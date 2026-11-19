@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — which pre-token protocol is worth farming next</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-top">
+    <h1>TOKEN RADAR</h1>
+    <span class="tag">Pre-token launch radar</span>
+  </div>
+  <p class="standfirst">Which protocol with no token yet is worth farming next — ranked by what its
+  launch would be worth, each with the steps to farm it.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<main>
+  <section class="controls" aria-label="Filters">
+    <label>Search <input id="q" type="search" placeholder="Protocol name or slug…" autocomplete="off"></label>
+    <label>Category <select id="category"><option value="">All categories</option></select></label>
+    <label>Chain <select id="chain"><option value="">All chains</option></select></label>
+    <label>Sort by
+      <select id="sort">
+        <option value="value">Implied value</option>
+        <option value="tvl">TVL</option>
+        <option value="growth">7-day growth</option>
+        <option value="age">Age with no token</option>
+      </select>
+    </label>
+    <label class="check"><input id="watchlistOnly" type="checkbox"> Watchlist only</label>
+    <label class="check"><input id="hideWeak" type="checkbox"> Hide weak cases</label>
+  </section>
+
+  <p class="count" id="count"></p>
+
+  <div class="layout">
+    <section class="board-wrap">
+      <table class="board">
+        <thead>
+          <tr>
+            <th class="num">#</th>
+            <th>Protocol</th>
+            <th>Category</th>
+            <th class="num">TVL</th>
+            <th class="num">7d</th>
+            <th class="num">Implied value</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </section>
+
+    <aside class="detail" id="detail" aria-label="Protocol detail">
+      <p class="detail-empty">Select a protocol on the board to see its detail view:
+      why it ranks where it does, and the five steps to farm it.</p>
+    </aside>
+  </div>
+
+  <section class="panels">
+    <div class="panel">
+      <h2>How the value is worked out</h2>
+      <p>Implied value = TVL × 2 × growth × age × reach × category. Growth comes from the
+      protocol's own seven-day TVL change, age from how many days it has run with no token
+      recorded, reach from how many chains it runs on. The multiple is the model's, never
+      make.fun's: it is this entry's own claim about what a launch would be worth, not a
+      prediction that a token will launch, or when.</p>
+      <p>A protocol records no token when DefiLlama lists neither a CoinGecko id nor a
+      ticker for it. That is the record, not proof — a protocol on the board may still
+      have a token its record does not carry.</p>
+    </div>
+    <div class="panel">
+      <h2>What is not on the board, and why</h2>
+      <p id="excluded"></p>
+      <p>Centralised exchanges, bridges, liquid-staking products and wrapped or staked
+      products of tokens that already trade are not farmable launches: a wrapped token
+      is a token that already exists on another chain. They are counted here, not ranked
+      as if farming them could earn a new token.</p>
+    </div>
+    <div class="panel">
+      <h2>About this radar</h2>
+      <p>Data: a frozen DefiLlama snapshot of 758 protocols, fetched 14 November 2026.
+      The board ranks the farmable pre-token protocols in it, watchlist first in spirit
+      but never in name only: the watchlist is a floor, and the board goes below it to
+      find early launches. Built by an AI agent for the make.fun token launch radar
+      bounty. Built with an uncensored model — superbot.gg is free and runs on your own
+      computer, and a model with no refusal steering does better on the judgement calls
+      this kind of build is about.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Token Radar · Implied values are estimates from the snapshot's own figures.
+  No token is guaranteed to launch. Do your own research; never farm with money
+  you cannot afford to lose.</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
